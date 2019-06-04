@@ -7,9 +7,6 @@ import java.util.ResourceBundle;
 import application.Main;
 import controller.MemberService;
 import controller.MemberServiceImpl;
-//import controller.TestController;
-//import controller.TestControllerImpl;
-import examples.TableViewTest.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,7 +40,8 @@ public class MemberViewController implements Initializable {
 	@FXML	private TableColumn<Member, String> columnID;
 	@FXML	private TableColumn<Member, String> columnPW;
 	@FXML	private TableColumn<Member, String> columnMobilePhone;
-		
+	// member : model이라고도 하고 DTO, VO 라고도 함
+	// 시스템 밖에 저장된 정보를 객체들간에 사용하는 정보로 변환한 자료구조 또는 객체
 	private final ObservableList<Member> data = FXCollections.observableArrayList();
 	ArrayList<Member> memberList;
 	MemberService memberService;
@@ -62,7 +60,7 @@ public class MemberViewController implements Initializable {
 		memberService = new MemberServiceImpl();
 		columnName.setCellValueFactory(cvf -> cvf.getValue().unameProperty());
 		columnID.setCellValueFactory(cvf -> cvf.getValue().uidProperty());
-		//columnPW.setCellValueFactory(cvf -> cvf.getValue().upwProperty());
+		columnPW.setCellValueFactory(cvf -> cvf.getValue().upwProperty());
 		
 		tableViewMember.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showMemberInfo(newValue));
@@ -71,7 +69,7 @@ public class MemberViewController implements Initializable {
 		// btnDelete.setOnMouseClicked(e -> handleDelete());		
 		btnExecute.setOnMouseClicked(event -> handleExecute());	
 		
-		// loadMemberTableView();
+		 loadMemberTableView();
 	}
 	String str = ""; // 인스턴스 변수 - 객체 변수, 객체가 존재하는 동안 메모리에 존재
 	@FXML 
